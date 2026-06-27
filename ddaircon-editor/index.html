@@ -180,7 +180,7 @@ document.getElementById('saveBtn').addEventListener('click',async()=>{
   const st=document.getElementById('status');st.textContent='이미지 생성 중…';
   try{
     const SC=2;
-    for(const bn of banners){const c=await renderBanner(bn,SC);await dl(c,'DD_배너_'+bn.name+'_'+bn.D.W+'x'+bn.D.H+'.png');}
+    for(let i=0;i<banners.length;i++){const bn=banners[i];const c=await renderBanner(bn,SC);await dl(c,'DD_배너_'+bn.name+'_'+bn.D.W+'x'+bn.D.H+'.png');if(i<banners.length-1)await new Promise(r=>setTimeout(r,700));}
     st.textContent='저장 완료 ✓ (측면 + 후면 2장)';
   }catch(err){st.textContent='오류: '+(err&&err.message?err.message:err);}
 });
